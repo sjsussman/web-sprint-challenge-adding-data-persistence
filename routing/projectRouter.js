@@ -89,4 +89,17 @@ router.delete('/:id', (req, res) => {
     })
 })
 
+router.get('/:id/resources', (req, res) => {
+    const { id } = req.params
+    Projects.getProjectResources(id)
+    .then(test => {
+        res.status(200).json(test)
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: err.message
+        })
+    })
+})
+
 module.exports = router;

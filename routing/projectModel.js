@@ -1,3 +1,4 @@
+const { select } = require('../data/db-config.js')
 const db = require('../data/db-config.js')
 
 module.exports = {
@@ -43,4 +44,14 @@ module.exports = {
         .where({ id : id })
         .del()
     },
+    //STRETCH
+    getProjectResources(project_id) {
+        return db('projects')
+        .join('projects_resources', 'projects.id', 'projects_resources.project_id')
+        .join('resources', 'resources.id', 'projects_resources.resource_id')
+        .select('projects.project_name', 'resources.resource_name')
+        .where({ 'project_id': project_id })
+    },
+
+    // [ ] Add an endpoint to get a list of project resources.
 }
