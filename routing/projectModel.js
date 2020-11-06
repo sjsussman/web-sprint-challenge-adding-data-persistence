@@ -53,10 +53,9 @@ module.exports = {
         .where({ 'project_id': project_id })
     },
 
-    getProjectResources(resource) {
+    addProjectResources(newKeys) {
         return db('projects_resources')
-        .insert(resource)
-        .where({ 'project_id': project_id })
+        .insert(newKeys)
     },
 
     // [ ] Add an endpoint to get a list of project resources.
